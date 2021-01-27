@@ -12,7 +12,10 @@ namespace TextTransformations.Consumer
 
             string result = ApplyTransformationRules(
                 text,
-                new TransformationRule[] { });
+                new TransformationRule[] 
+                { 
+                    new ReplaceTextTransformationRule("test", "test123")
+                });
 
             Console.WriteLine("-------------------------------------");
             Console.WriteLine("Transformed text is:");
