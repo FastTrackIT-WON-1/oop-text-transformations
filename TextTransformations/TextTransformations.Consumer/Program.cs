@@ -10,16 +10,32 @@ namespace TextTransformations.Consumer
             Console.Write("Please enter text=");
             string text = Console.ReadLine();
 
-            string result = ApplyTransformationRules(
+            string result1 = ApplyTransformationRules(
                 text,
                 new TransformationRule[] 
-                { 
+                {
+                    new InsertStringTransformationRule(0, "Petre "),
+                    new DeleteTextTransformationRule("test"),
+                    new ReplaceTextTransformationRule("a", "test123")
+                });
+
+
+            string result2 = ApplyTransformationRules(
+                text,
+                new TransformationRule[]
+                {
+                    new InsertStringTransformationRule(0, "Rodica "),
                     new ReplaceTextTransformationRule("test", "test123")
                 });
 
+
             Console.WriteLine("-------------------------------------");
-            Console.WriteLine("Transformed text is:");
-            Console.WriteLine(result);
+            Console.WriteLine("Transformed text 1 is:");
+            Console.WriteLine(result1);
+
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("Transformed text 2 is:");
+            Console.WriteLine(result2);
         }
 
         static string ApplyTransformationRules(
