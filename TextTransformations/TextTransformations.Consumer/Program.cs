@@ -1,4 +1,5 @@
 ﻿using System;
+using TextTransformations.Library;
 
 namespace TextTransformations.Consumer
 {
@@ -6,7 +7,33 @@ namespace TextTransformations.Consumer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Please enter text=");
+            string text = Console.ReadLine();
+
+            string result = ApplyTransformationRules(
+                text,
+                new TransformationRule[] { });
+
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("Transformed text is:");
+            Console.WriteLine(result);
+        }
+
+        static string ApplyTransformationRules(
+            string input,
+            TransformationRule[] transformationRules)
+        {
+            if (transformationRules is null)
+            {
+                return input;
+            }
+
+            foreach (TransformationRule rule in transformationRules)
+            {
+                input = rule.Process(input);
+            }
+
+            return input;
         }
     }
 }
